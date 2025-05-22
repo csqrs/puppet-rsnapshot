@@ -50,7 +50,8 @@ class rsnapshot::server(
     replace => true,
   }
 
-  file { '/etc/cron.daily/logrotate': ensure => absent}
+  # conflicts with another module
+  #file { '/etc/cron.daily/logrotate': ensure => absent}
 
 
   # Add logging folder
