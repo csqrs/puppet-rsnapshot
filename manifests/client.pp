@@ -24,6 +24,7 @@ class rsnapshot::client (
   $excludes             = {},
   $include_files        = {},
   $includes             = {},
+  $manual_mode          = $rsnapshot::params::manual_mode,
   $one_fs               = $rsnapshot::params::one_fs,
   $push_ssh_key         = $rsnapshot::params::push_ssh_key,
   $purge_ssh_keys       = $rsnapshot::params::purge_ssh_keys,
@@ -33,6 +34,7 @@ class rsnapshot::client (
   $retain_weekly        = $rsnapshot::params::retain_weekly,
   $rsync_long_args      = $rsnapshot::params::rsync_long_args,
   $rsync_short_args     = $rsnapshot::params::rsync_short_args,
+  $server_rsnapshot_key = $rsnapshot::params::server_rsnapshot_key,
   $server_user          = $rsnapshot::params::server_user,
   $setup_sudo           = $rsnapshot::params::setup_sudo,
   $ssh_args             = $rsnapshot::params::ssh_args,
@@ -47,9 +49,11 @@ class rsnapshot::client (
   # Add User
   class { 'rsnapshot::client::user' :
     client_user    => $client_user,
+    manual_mode    => $manual_mode,
     push_ssh_key   => $push_ssh_key,
     purge_ssh_keys => $purge_ssh_keys, 
     server         => $server,
+    server_rsnapshot_key    => $server_rsnapshot_key,
     server_user    => $server_user,
     setup_sudo     => $setup_sudo,
     use_sudo       => $use_sudo,
