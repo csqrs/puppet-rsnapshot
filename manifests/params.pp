@@ -12,6 +12,7 @@ class rsnapshot::params {
   $cmd_postexec           = undef
   $cmd_preexec            = undef
   $connect_endpoint       = $facts['networking']['fqdn']
+  $directories            = ['/etc','/home','/root','/var/www','/opt/mysqldumps']
   $du_args                = '-csh'
   $link_dest              = 1
   $log_level              = 'warning'

@@ -19,7 +19,7 @@ class rsnapshot::client (
   $cmd_wrapper_postexec = [],
   $cmd_wrapper_preexec  = [],
   $connect_endpoint     = $rsnapshot::params::connect_endpoint,
-  $directories          = ['/etc','/home','/root','/var/www','/opt/mysqldumps'],
+  $directories          = $rsnapshot::params::directories,
   $exclude_files        = {},
   $excludes             = {},
   $include_files        = {},
@@ -48,16 +48,16 @@ class rsnapshot::client (
 
   # Add User
   class { 'rsnapshot::client::user' :
-    client_user    => $client_user,
-    manual_mode    => $manual_mode,
-    push_ssh_key   => $push_ssh_key,
-    purge_ssh_keys => $purge_ssh_keys, 
-    server         => $server,
-    server_rsnapshot_key    => $server_rsnapshot_key,
-    server_user    => $server_user,
-    setup_sudo     => $setup_sudo,
-    use_sudo       => $use_sudo,
-    wrapper_path   => $wrapper_path_normalized,
+    client_user          => $client_user,
+    manual_mode          => $manual_mode,
+    push_ssh_key         => $push_ssh_key,
+    purge_ssh_keys       => $purge_ssh_keys,
+    server               => $server,
+    server_rsnapshot_key => $server_rsnapshot_key,
+    server_user          => $server_user,
+    setup_sudo           => $setup_sudo,
+    use_sudo             => $use_sudo,
+    wrapper_path         => $wrapper_path_normalized,
   }
 
   # Add Wrapper Scripts

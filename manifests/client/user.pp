@@ -56,7 +56,7 @@ class rsnapshot::client::user (
       require => File["/home/${client_user}/.ssh"],
     }
     # manual mode: read hiera instead of facts
-    if $manual_mode == true {
+    if $manual_mode {
       Concat::Fragment { "${server}_pubkey":
         target  => "/home/${client_user}/.ssh/authorized_keys",
         content => "${server_rsnapshot_key}",
